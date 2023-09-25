@@ -8,7 +8,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </head>
 <body>
@@ -20,16 +20,24 @@
                 <input type="number" id="numero" name="numero">
             </div>
             <button class="btn" onclick="adicionarCampos()">Adicionar Campos</button>
-        </div>
-        <div class="card">
             <h1>Linha do Tempo</h1>
             <form>
-                <div id="container" class="form-group"></div>
+                <div id="container" ></div>
             </form>
-            <h1 id="sexo"></h1>
-
+            <div class=results>
+                <div class=results_boxes>
+                    <div class=result_box id=mtbf>
+                    </div>
+                    <div class=result_box id=mttr>
+                    </div>
+                    <div class=result_box id=disponibilidade>
+                    </div>
+                    <div class=result_box id=indisponibilidade>
+                    </div>
+                </div>    
+                <canvas class=myChart id=myChart></canvas>
+            </div>
         </div>
     </div>
-   
 </body>
 </html>

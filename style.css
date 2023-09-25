@@ -1,18 +1,57 @@
-
 .container {
-    background-color: black;
     padding: 20px;
-    max-width: 50%;
+    max-width: 90%;
     margin: 0 auto;
+}
+.failure{
+    background-color: rgb(238, 159, 159);
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: 3px solid red;
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+.working{
+    background-color: rgb(162, 238, 159);
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: 3px solid rgb(0, 255, 34);
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+p{
+    color:#fff;
 }
 .card {
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    padding: 24px;
     margin-bottom: 24px;
     text-align: center; 
 }
+
+.results {
+    display: grid; /* Define um layout de grade */
+    grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas iguais */
+    gap: 10px;
+    padding: 24px;
+    max-width: 70%;
+}
+
+.result_box {
+    background-color: #4285f4;
+    color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 20px; 
+}
+
+
 .btn {
     background-color: #4285f4;
     margin-top: 10px;

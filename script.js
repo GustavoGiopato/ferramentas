@@ -4,25 +4,24 @@
 
     if (!isNaN(numero)) {
         var container = document.getElementById("container");
-
-        // Limpa o conteúdo anterior
         container.innerHTML = "";
 
         for (var i = 1; i <= numero; i++) {
             var label = document.createElement("label");
-            label.textContent = "Falha " + i;
+            label.textContent = "Tempo em reparo " + i;
             
             var label2 = document.createElement("label");
             label2.textContent = "Ativo funcionando";
         
             var input = document.createElement("input");
-            var input2 = document.createElement("input"); // Correção: corrigir a criação do input2
+            var input2 = document.createElement("input"); 
         
             input.type = "text";
+            input.classList="failure";
             input.name = "campo" + i;
             input.id = "campo" + i; 
-        
             input2.type =  "text";
+            input2.classList= "working";
             input2.name = "campo2" + i;
             input2.id = "campo2" + i; 
         
@@ -46,10 +45,10 @@
 function calc() {
     var inputs = document.querySelectorAll('input[name^="campo"]'); // Acho que isso daqui da pra tocar pelo id do campo ao invez do nome
     
-    console.log(MTBF(inputs));
-    console.log(MTTR(inputs));
-    console.log(Disponibilidade(inputs));
-    console.log(Indisponibilidade(inputs));
+    var mtbfg = (MTBF(inputs));
+    var mttrg =(MTTR(inputs));
+    var disponibilidadeg = (Disponibilidade(inputs));
+    var indisponibilidadeg = (Indisponibilidade(inputs));
     function MTBF(inputs){ // MTBF = (Tempo total – Tempo perdido) / (Quantidade de paradas).
         
         var time_lost = 0.0;
@@ -93,5 +92,35 @@ function calc() {
         var indisp = 100 - Disponibilidade(inputs);
         return indisp.toFixed(2);
     }
-    
+
+    document.getElementById("mtbf").innerHTML=`<p> MTBF = ${mtbfg.toFixed(2)} horas</p>`;
+    document.getElementById("mttr").innerHTML=`<p> MTTR = ${mttrg.toFixed(2)} horas</p>`;
+    document.getElementById("disponibilidade").innerHTML=`<p> Disponibilidade = ${disponibilidadeg}% </p>`;
+    document.getElementById("indisponibilidade").innerHTML=`<p> Indisponibilidade = ${indisponibilidadeg}% </p>`;
+
+
+    var xlabels = ['Tempo Disponível %', 'Tempo Indisponível %'];
+    var ydatas = [disponibilidadeg, indisponibilidadeg];
+
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: xlabels,
+            datasets: [ {
+                data: ydatas,
+                borderWidth: 6,
+                borderColor: 'rgb(219, 0, 0,0)',
+                backgroundColor: ['rgb(6, 182, 6)', 'rgb(219, 0, 0)'],
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 20,
+                fontStyle: "bold",
+                text: "Disponibilidade Inerente %",
+            },
+        }
+    });
 }
