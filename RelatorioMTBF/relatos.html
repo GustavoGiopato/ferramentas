@@ -143,6 +143,9 @@ function calc() {
     max-width: 90%;
     margin: 0 auto;
 }
+h3 {
+    margin-bottom: 10px;
+}
 .failure{
     background-color: rgb(238, 159, 159);
     width: 40px;
@@ -173,7 +176,6 @@ p{
     margin-bottom: 24px;
     text-align: center; 
 }
-
 .results {
     display: grid; /* Define um layout de grade */
     grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas iguais */
@@ -181,7 +183,6 @@ p{
     padding: 24px;
     max-width: 70%;
 }
-
 .result_box {
     background-color: #4285f4;
     color: #fff;
@@ -190,11 +191,10 @@ p{
     margin-bottom: 10px;
     padding: 20px; 
 }
-
-
 .btn {
     background-color: #4285f4;
     margin-top: 10px;
+    margin-bottom: 10px;
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -243,12 +243,12 @@ p{
     <div class="container">    
         <div class="card">
             <div>
-                <h1>Relatório de MTBF, MTTR e disponibilidade inerente</h1>
-                <label for="numero">Digite um número: </label>
+                <h3>Relatório de MTBF, MTTR e disponibilidade inerente</h3>
+                <label for="numero">Número de Falhas: </label>
                 <input type="number" id="numero" name="numero">
             </div>
             <button class="btn" onclick="adicionarCampos()">Adicionar Campos</button>
-            <h1>Linha do Tempo</h1>
+            <h3>Linha do Tempo</h3>
             <form>
                 <div id="container" ></div>
             </form>
