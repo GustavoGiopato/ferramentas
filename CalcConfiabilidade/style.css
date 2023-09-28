@@ -49,8 +49,6 @@ h5{
 }
 
 .resultsC {
-    display: grid; /* Define um layout de grade */
-    grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas iguais */
     gap: 10px;
     padding: 24px;
     max-width: 60%;

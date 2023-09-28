@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .container {
+   .container {
     padding: 20px;
     max-width: 90%;
     margin: 0 auto;
@@ -28,7 +28,7 @@ input{
     appearance: none;
     width: 60%;
 }
-h5{
+h4{
     color:#fff;
 }
 .failure{
@@ -61,17 +61,11 @@ h5{
 }
 
 .resultsC {
-    display: grid;
-  
     gap: 10px;
     padding: 24px;
-    max-width: 70%;
+    max-width: 60%;
 }
-
 .result_boxC {
-    display:inline-block;
-    grid-template-rows: 1fr 2fr 1fr;
-    
     background-color: #4285f4;
     color: #fff;
     border: 1px solid #ccc; 
@@ -151,22 +145,22 @@ h5{
 
     graph(tempo,taxa_de_falhas_negativo);
 
-    var resultsBoxes = document.querySelector(".results_boxesC");
+    var resultsBoxes = document.querySelector(".results_boxesC ");
 
     var printmtbf = document.createElement("div");
     printmtbf.className = "result_boxC";
-    printmtbf.innerHTML = `<p> MTBF = ${mtbf.toFixed(2)} horas </p>`;
+    printmtbf.innerHTML = `<div><h4> MTBF = ${mtbf.toFixed(2)} horas; </h4></div> <div><h4>A <b>Confiabilidade</b> para as próximas <b>${tempo} horas é de ${confiabilidadeemp.toFixed(2)}%;</b> </h4></div> <div> <h4>A <b>Probabilidade de Falhas</b> para as próximas <b>${tempo} horas é de ${probabilidadeFalhas.toFixed(2)}%.</b> </h4> </div>`;
     resultsBoxes.appendChild(printmtbf);
 
-    var printconfiabilidade = document.createElement("div");
-    printconfiabilidade.className = "result_boxC";
-    printconfiabilidade.innerHTML = `<p>A <b>Confiabilidade</b> para as próximas <b>${tempo} horas é de ${confiabilidadeemp.toFixed(2)}%.</b> </p>`;
-    resultsBoxes.appendChild(printconfiabilidade);
+    // var printconfiabilidade = document.createElement("div");
+    // printconfiabilidade.className = "result_boxC";
+    // printconfiabilidade.innerHTML = `<p>A <b>Confiabilidade</b> para as próximas <b>${tempo} horas é de ${confiabilidadeemp.toFixed(2)}%.</b> </p>`;
+    // resultsBoxes.appendChild(printconfiabilidade);
 
-    var printprobabilidade = document.createElement("div");
-    printprobabilidade.className = "result_boxC";
-    printprobabilidade.innerHTML = `<p>A <b>Probabilidade de Falhas</b> para as próximas <b>${tempo} horas é de ${probabilidadeFalhas.toFixed(2)}%.</b> </p>`;
-    resultsBoxes.appendChild(printprobabilidade);
+    // var printprobabilidade = document.createElement("div");
+    // printprobabilidade.className = "result_boxC";
+    // printprobabilidade.innerHTML = `<p>A <b>Probabilidade de Falhas</b> para as próximas <b>${tempo} horas é de ${probabilidadeFalhas.toFixed(2)}%.</b> </p>`;
+    // resultsBoxes.appendChild(printprobabilidade);
 
 }    
 
@@ -265,12 +259,15 @@ function graph(tempo, taxa_de_falhas_negativo) {
                 <input type="text" id="custo-inatividade" name="custo-inatividade" placeholder="Em horas">
             </div>
             <button class="btn" onclick="calcular()">Calcular</button>
-            <div class="resultsC">
-                <div class="results_boxesC" >
-                    
+            <center>
+                <div class="resultsC">
+                <center>
+                    <div class="results_boxesC" >
+                        
+                    </div>
+                </center>
                 </div>
-
-            </div>
+            </center>
             <canvas class=grafico_r></canvas>
             <canvas class=grafico_f></canvas>
         </div>
