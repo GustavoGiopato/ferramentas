@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .container {
+    padding: 20px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+input{
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60%;
+}
+h5{
+    color:#fff;
+}
+.failure{
+    background-color: rgb(238, 159, 159);
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    border: 3px solid red;
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+.working{
+    background-color: rgb(162, 238, 159);
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    border: 3px solid rgb(0, 255, 34);
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin-bottom: 24px;
+    text-align: center; 
+}
+
+.resultsC {
+    display: grid;
+  
+    gap: 10px;
+    padding: 24px;
+    max-width: 70%;
+}
+
+.result_boxC {
+    display:inline-block;
+    grid-template-rows: 1fr 2fr 1fr;
+    
+    background-color: #4285f4;
+    color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px; 
+}
+.p{
+    color: #fff;
+}
+
+.btn {
+    background-color: #4285f4;
+    margin-top: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 80px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: inline-block; 
+}
+.btn:hover {
+    background-color: rgb(17, 26, 105)
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    align-items: flex-start;
+}
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    display: block;
+}
+    .form-group input[type="text"] {
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 95%;
+}
+.form-group input[type="text"]:focus {
+    box-shadow: 0px 4px 8px rgba(47, 5, 235, 0.1);
+    outline: auto;
+}
+    </style>
+    <script>
+        function calcular(){
+    let horas_em_funcionamento = document.getElementById("tempo-funcional").value;
+    let numero_de_falhas = document.getElementById("taxa-horaria").value;
+    let tempo = document.getElementById("custo-inatividade").value;
+    if(horas_em_funcionamento =="" || numero_de_falhas =="" || tempo =="" ){
+        alert( "Preencha todos os campos e use apenas números." );
+        return false;
+    }
+    
+    let mtbf = horas_em_funcionamento / numero_de_falhas;
+                
+    let taxa_de_falhas = 1/mtbf;
+    let taxa_de_falhas_negativo = taxa_de_falhas * -1;
+    let expoente = taxa_de_falhas_negativo * tempo;
+    let confiabilidade = Math.pow(2.71828, expoente);
+    let confiabilidadeemp = confiabilidade * 100;
+    let probabilidadeFalhas = (1 - confiabilidade)*100;
+
+    graph(tempo,taxa_de_falhas_negativo);
+
+    var resultsBoxes = document.querySelector(".results_boxesC");
+
+    var printmtbf = document.createElement("div");
+    printmtbf.className = "result_boxC";
+    printmtbf.innerHTML = `<p> MTBF = ${mtbf.toFixed(2)} horas </p>`;
+    resultsBoxes.appendChild(printmtbf);
+
+    var printconfiabilidade = document.createElement("div");
+    printconfiabilidade.className = "result_boxC";
+    printconfiabilidade.innerHTML = `<p>A <b>Confiabilidade</b> para as próximas <b>${tempo} horas é de ${confiabilidadeemp.toFixed(2)}%.</b> </p>`;
+    resultsBoxes.appendChild(printconfiabilidade);
+
+    var printprobabilidade = document.createElement("div");
+    printprobabilidade.className = "result_boxC";
+    printprobabilidade.innerHTML = `<p>A <b>Probabilidade de Falhas</b> para as próximas <b>${tempo} horas é de ${probabilidadeFalhas.toFixed(2)}%.</b> </p>`;
+    resultsBoxes.appendChild(printprobabilidade);
+
+}    
+
+function graph(tempo, taxa_de_falhas_negativo) {
+    let tempos = [];
+    let expoente = [];
+    let confiabilidade = [];
+    let falha = [];
+
+    tempos[0] = 0;
+    let count = 0.1
+    for(let i = 1;i <= 20 ; i++) {
+        tempos[i] = tempo * count 
+        count = count + 0.1;
+    }
+    
+    for(let i = 0; i < 22; i++){
+        expoente[i] = taxa_de_falhas_negativo * tempos[i]
+    }
+    for(let i = 0; i < 22; i++) {
+        confiabilidade[i] = Math.pow(2.71828, expoente[i]) * 100;
+        
+    }
+    for(let i = 0; i < 22; i++) {
+        falha[i] = 100 - confiabilidade[i];
+    }
+    var xlabels = tempos.map(valor => parseFloat(valor.toFixed(1)));
+    var ydatas = confiabilidade;
+
+    var ctx = document.getElementsByClassName("grafico_r");
+        
+    var ChartGraph = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xlabels,
+            datasets: [ {
+                label: "Confiabilidade (%)", 
+                data: ydatas,
+                borderWidth: 6,
+                borderColor: 'rgb(5, 168, 5)',
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 20,
+                fontStyle: "bold",
+                text: "Confiabilidade em Função do Tempo",
+                
+            }
+        }
+    });
+
+    var xlabels_f = tempos.map(valor => parseFloat(valor.toFixed(1)));
+    var ydatas_f = falha;
+    var ctx = document.getElementsByClassName("grafico_f");
+            
+    var ChartGraph = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: xlabels_f,
+            datasets: [ {
+                label: "Probabilidade de Falhas (%)", 
+                data: ydatas_f,
+                borderWidth: 6,
+                borderColor: 'rgb(219, 0, 0)',
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 20,
+                fontStyle: "bold",
+                
+                text: "Probabilidade de Falhas em Função do Tempo",
+            }
+        }
+    });
+}
+    </script>
+</head>
+<body>
+    <div class="container">    
+        <div class="card">
+            <h3>Relatório de Confiabilidade</h3>
+            <div class="form-group">
+                <label for="tempo-funcional">Tempo em bom funcionamento:</label>
+                <input type="text" id="tempo-funcional" name="tempo-funcional" placeholder="Em horas">
+            </div>
+            <div class="form-group">
+                <label for="taxa-horaria">Número de Falhas Funcionais: </label>
+                <input type="text" id="taxa-horaria" name="taxa-horaria" placeholder="Número de falhas">
+            </div>
+            <div class="form-group">
+                <label for="tempo-confiabilidade">Tempo Para Projeção da Confiabilidade: </label>
+                <input type="text" id="custo-inatividade" name="custo-inatividade" placeholder="Em horas">
+            </div>
+            <button class="btn" onclick="calcular()">Calcular</button>
+            <div class="resultsC">
+                <div class="results_boxesC" >
+                    
+                </div>
+
+            </div>
+            <canvas class=grafico_r></canvas>
+            <canvas class=grafico_f></canvas>
+        </div>
+    </div>
+</body>
+</html>

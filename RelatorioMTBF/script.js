@@ -92,12 +92,32 @@ function calc() {
         var indisp = 100 - Disponibilidade(inputs);
         return indisp.toFixed(2);
     }
+    var resultsBoxes = document.querySelector(".results_boxes");
 
-    document.getElementById("mtbf").innerHTML=`<p> MTBF = ${mtbfg.toFixed(2)} horas</p>`;
-    document.getElementById("mttr").innerHTML=`<p> MTTR = ${mttrg.toFixed(2)} horas</p>`;
-    document.getElementById("disponibilidade").innerHTML=`<p> Disponibilidade = ${disponibilidadeg}% </p>`;
-    document.getElementById("indisponibilidade").innerHTML=`<p> Indisponibilidade = ${indisponibilidadeg}% </p>`;
+    var primeiro = document.createElement("div");
+    primeiro.className = "result_box";
+    primeiro.innerHTML = `<p> MTBF = ${mtbfg.toFixed(2)} horas</p>`;
 
+    resultsBoxes.appendChild(primeiro);
+
+    var segundo = document.createElement("div");
+    segundo.className = "result_box";
+    segundo.innerHTML = `<p> MTTR = ${mttrg.toFixed(2)} horas</p>`;
+
+    resultsBoxes.appendChild(segundo);
+    
+    var terceiro = document.createElement("div");
+    terceiro.className = "result_box";
+    terceiro.innerHTML = `<p> Disponibilidade = ${disponibilidadeg}% </p>`;
+
+    resultsBoxes.appendChild(terceiro);
+
+    var quarto = document.createElement("div");
+    quarto.className = "result_box";
+    quarto.innerHTML = `<p> Indisponibilidade = ${indisponibilidadeg}% </p>`;
+
+    resultsBoxes.appendChild(quarto);
+     
 
     var xlabels = ['Tempo Disponível %', 'Tempo Indisponível %'];
     var ydatas = [disponibilidadeg, indisponibilidadeg];

@@ -1,38 +1,88 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-}
-body {
-    background-color: #f5f5f5;
-}
 .container {
     padding: 20px;
-    max-width: 50%;
+    max-width: 90%;
     margin: 0 auto;
 }
-p{
-    margin-top: 5px;
-    font-size: small;
-    color: #414e64;
+input{
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60%;
 }
-input,input:focus{
-    outline: 1px solid rgba(0, 0, 0, 0.26);
+h5{
+    color:#fff;
 }
+.failure{
+    background-color: rgb(238, 159, 159);
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    border: 3px solid red;
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+.working{
+    background-color: rgb(162, 238, 159);
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    border: 3px solid rgb(0, 255, 34);
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+
 .card {
     background-color: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    padding: 24px;
     margin-bottom: 24px;
     text-align: center; 
 }
-.card-title {
-    font-size: 24px;
+
+.resultsC {
+    display: grid; /* Define um layout de grade */
+    grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas iguais */
+    gap: 10px;
+    padding: 24px;
+    max-width: 60%;
+}
+.result_boxC {
+    background-color: #4285f4;
+    color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px; 
+}
+.p{
+    color: #fff;
+}
+
+.btn {
+    background-color: #4285f4;
+    margin-top: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 80px;
+    font-size: 16px;
     font-weight: 500;
-    margin-bottom: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: inline-block; 
+}
+.btn:hover {
+    background-color: rgb(17, 26, 105)
 }
 .form-group {
     display: flex;
@@ -57,45 +107,9 @@ input,input:focus{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 100%;
+    width: 95%;
 }
 .form-group input[type="text"]:focus {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    outline: none;
-}
-
-.btn {
-    background-color: #4285f4;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 80px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    display: inline-block; 
-}
-.btn:hover {
-    background-color: rgb(17, 26, 105)
-}
-.formulario {
-    margin-bottom: 10px;
-    padding: 20px; 
-    border: 1px solid #4285f4;  
-    border-radius: 15px;
-    width: 450px"
-}
-.resultado {
-    font-size: 16px;
-    font-weight: 500;
-    margin-top: 24px;
-}
-.resultado span {
-    font-weight: 700;
-    color: #4285f4;
-}
-.saving {
-    margin-bottom: 10px;
-    color: #4285f4;
+    box-shadow: 0px 4px 8px rgba(47, 5, 235, 0.1);
+    outline: auto;
 }

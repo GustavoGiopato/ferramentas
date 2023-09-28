@@ -8,6 +8,123 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+    padding: 20px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+input{
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60%;
+}
+h5{
+    color:#fff;
+}
+.failure{
+    background-color: rgb(238, 159, 159);
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    border: 3px solid red;
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+.working{
+    background-color: rgb(162, 238, 159);
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    border: 3px solid rgb(0, 255, 34);
+    text-align: center;
+    outline: 0;
+    margin: 10px;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    margin-bottom: 24px;
+    text-align: center; 
+}
+
+.results {
+    display: grid; /* Define um layout de grade */
+    grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas iguais */
+    gap: 10px;
+    padding: 24px;
+    max-width: 70%;
+}
+
+.result_box {
+    background-color: #4285f4;
+    color: #fff;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 20px; 
+}
+.p{
+    color: #fff;
+}
+
+.btn {
+    background-color: #4285f4;
+    margin-top: 10px;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 80px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: inline-block; 
+}
+.btn:hover {
+    background-color: rgb(17, 26, 105)
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    align-items: flex-start;
+}
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    display: block;
+}
+    .form-group input[type="text"] {
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 95%;
+}
+.form-group input[type="text"]:focus {
+    box-shadow: 0px 4px 8px rgba(47, 5, 235, 0.1);
+    outline: auto;
+}
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
            function adicionarCampos() {
@@ -20,10 +137,10 @@
 
      for (var i = 1; i <= numero; i++) {
          var label = document.createElement("label");
-         label.textContent = "Tempo em reparo " + i;
+         label.textContent = "Horas em Reparo " + i;
          
          var label2 = document.createElement("label");
-         label2.textContent = "Ativo funcionando";
+         label2.textContent = "Horas Funcionando";
      
          var input = document.createElement("input");
          var input2 = document.createElement("input"); 
@@ -104,12 +221,32 @@ function calc() {
      var indisp = 100 - Disponibilidade(inputs);
      return indisp.toFixed(2);
  }
+ var resultsBoxes = document.querySelector(".results_boxes");
 
- document.getElementById("mtbf").innerHTML=`<p> MTBF = ${mtbfg.toFixed(2)} horas</p>`;
- document.getElementById("mttr").innerHTML=`<p> MTTR = ${mttrg.toFixed(2)} horas</p>`;
- document.getElementById("disponibilidade").innerHTML=`<p> Disponibilidade = ${disponibilidadeg}% </p>`;
- document.getElementById("indisponibilidade").innerHTML=`<p> Indisponibilidade = ${indisponibilidadeg}% </p>`;
+ var primeiro = document.createElement("div");
+ primeiro.classList.add("result_box", "p");
+ primeiro.innerHTML = `<h5> MTBF = ${mtbfg.toFixed(2)} horas</h5>`;
 
+ resultsBoxes.appendChild(primeiro);
+
+ var segundo = document.createElement("div");
+ segundo.classList.add("result_box", "p");
+ segundo.innerHTML = `<h5> MTTR = ${mttrg.toFixed(2)} horas</h5>`;
+
+ resultsBoxes.appendChild(segundo);
+ 
+ var terceiro = document.createElement("div");
+ terceiro.classList.add("result_box", "p");
+ terceiro.innerHTML = `<h5> Disponibilidade = ${disponibilidadeg}% </h5>`;
+
+ resultsBoxes.appendChild(terceiro);
+
+ var quarto = document.createElement("div");
+ quarto.classList.add("result_box", "p");
+ quarto.innerHTML = `<h5> Indisponibilidade = ${indisponibilidadeg}% </h5>`;
+
+ resultsBoxes.appendChild(quarto);
+  
 
  var xlabels = ['Tempo Disponível %', 'Tempo Indisponível %'];
  var ydatas = [disponibilidadeg, indisponibilidadeg];
@@ -137,130 +274,33 @@ function calc() {
  });
 }
     </script>
-    <style>
-        .container {
-    padding: 20px;
-    max-width: 90%;
-    margin: 0 auto;
-}
-h3 {
-    margin-bottom: 10px;
-}
-.failure{
-    background-color: rgb(238, 159, 159);
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
-    border: 3px solid red;
-    text-align: center;
-    outline: 0;
-    margin: 10px;
-}
-.working{
-    background-color: rgb(162, 238, 159);
-    width: 40px;
-    height: 40px;
-    border-radius: 40px;
-    border: 3px solid rgb(0, 255, 34);
-    text-align: center;
-    outline: 0;
-    margin: 10px;
-}
-p{
-    color:#fff;
-}
-.card {
-    background-color: #fff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    margin-bottom: 24px;
-    text-align: center; 
-}
-.results {
-    display: grid; /* Define um layout de grade */
-    grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas iguais */
-    gap: 10px;
-    padding: 24px;
-    max-width: 70%;
-}
-.result_box {
-    background-color: #4285f4;
-    color: #fff;
-    border: 1px solid #ccc; 
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding: 20px; 
-}
-.btn {
-    background-color: #4285f4;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    padding: 12px 80px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    display: inline-block; 
-}
-.btn:hover {
-    background-color: rgb(17, 26, 105)
-}
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 24px;
-    align-items: flex-start;
-}
-.form-group label {
-    margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 14px;
-    display: block;
-}
-    .form-group input[type="text"] {
-    border-radius: 4px;
-    border: none;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 12px;
-    font-size: 16px;
-    background-color: #fff;
-    transition: box-shadow 0.2s ease;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 95%;
-}
-.form-group input[type="text"]:focus {
-    box-shadow: 0px 4px 8px rgba(47, 5, 235, 0.1);
-    outline: auto;
-}
-    </style>
 </head>
 <body>
     <div class="container">    
         <div class="card">
             <div>
                 <h3>Relatório de MTBF, MTTR e disponibilidade inerente</h3>
-                <label for="numero">Número de Falhas: </label>
-                <input type="number" id="numero" name="numero">
+                <div>
+                    <label for="numero">Digite um número: </label>
+                </div>
+                <div>
+                    <input type="number" id="numero" name="numero">
+                </div>
             </div>
             <button class="btn" onclick="adicionarCampos()">Adicionar Campos</button>
-            <h3>Linha do Tempo</h3>
+            <h3 style="margin-top: 10px;">Linha do Tempo</h3>
             <form>
                 <div id="container" ></div>
             </form>
             <div class=results>
                 <div class=results_boxes>
-                    <div class=result_box id=mtbf>
+                    <div id=mtbf>
                     </div>
-                    <div class=result_box id=mttr>
+                    <div id=mttr>
                     </div>
-                    <div class=result_box id=disponibilidade>
+                    <div id=disponibilidade>
                     </div>
-                    <div class=result_box id=indisponibilidade>
+                    <div id=indisponibilidade>
                     </div>
                 </div>    
                 <canvas class=myChart id=myChart></canvas>

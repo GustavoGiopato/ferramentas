@@ -1,0 +1,316 @@
+.container {
+    max-width: 60%;
+    background-color: rgb(00, 88, 166);
+    padding: 40px;
+    border-radius: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:rgb(255, 255, 255);
+    box-shadow: 0px 10px 14px -7px #000000;
+    margin: auto;
+    
+    
+    
+    
+    }
+    
+    input {
+        width: 100%;
+        display: block;
+        padding: 8px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    
+    }
+    
+    .resultados{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 28px;
+        color: rgb(00, 88, 166);
+        margin-top: 60px;
+        text-align: center;
+    
+    
+    
+    
+    
+    }
+    
+    .resultado_mtbf{
+        background-color: rgb(00, 88, 166);
+        padding: 20px;
+        border-radius: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color:rgb(255, 255, 255);
+        font-size: 20px;
+        min-width: 200px;
+        max-width: 300px;
+        max-height: 100px;
+        margin:20px;
+        text-align: center;
+        box-shadow: 0px 10px 14px -7px #000000;
+        
+    
+        
+    }
+    
+    .resultado_r{
+        background-color: rgb(5, 168, 5);
+        padding: 20px;
+        border-radius: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color:rgb(255, 255, 255);
+        font-size: 20px;
+        text-align: center;
+        min-width: 200px;
+        max-width: 300px;
+        max-height: 100px;
+        margin:20px;
+        box-shadow: 0px 10px 14px -7px #000000;
+    
+    }
+    
+    .resultado_f{
+        background-color: rgb(219, 0, 0);
+        padding: 20px;
+        border-radius: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color:rgb(255, 255, 255);
+        text-align: center;
+        min-width: 200px;
+        max-width: 300px;
+        max-height: 100px;
+        margin:20px;
+        box-shadow: 0px 10px 14px -7px #000000;
+    
+    }
+    
+    .body {
+        margin: 40px;
+        background-image: url(http://realinstitutodeoncologia.com.br/wp-content/uploads/2017/07/white-background-image-3.jpg);
+        background-size:cover;
+        
+        
+        
+        }
+    
+    .button{
+        background-color: rgb(5, 168, 5);
+        box-shadow: 0px 10px 14px -7px #000000;
+        border-radius: 5px;
+        border-color: rgb(6, 182, 6);
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+        color: white;
+        cursor: pointer;
+        margin-top: 10px;
+        
+          
+    }
+    
+    .button:hover{
+        transform: scale(1.03);
+        transition: .3s;
+    }
+    
+    
+    .logo_topo {
+        
+    
+    
+    }
+    
+    .elementos {
+        display:flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: auto;
+        padding: 20px;
+        width: 80%;
+        justify-content: center;
+    
+        
+        
+    
+    
+    }
+    
+    .grafico_r{
+        max-width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        justify-content: center;
+        margin-bottom: 20px;
+       
+                
+    
+    }
+    
+    .grafico_f{
+        max-width: 80%;
+        margin: auto;
+        margin-top: 20px;
+        justify-content: center;
+        margin-bottom: 20px;
+       
+                
+    
+    }
+    
+    .tabela {
+        text-align: center;
+        border-collapse: collapse;
+        margin: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        width: 70%;
+        padding: 10px;
+        margin: auto;
+        border-radius: 5px 5px 0 0;
+        text-align: center;
+        
+        }
+    
+    
+    
+    .tabela thead th {
+        background-color: rgb(00, 88, 166);
+        color:rgb(255, 255, 255);
+        font-weight: bold;
+        height: 30px;
+        padding: 10px;
+        text-align: left;
+        font-weight: bold;
+        text-align: center;
+    
+    
+    
+    }
+    
+    .tabela tbody tr {
+        border-bottom: 1px solid rgb(167, 167, 167);
+    
+    }
+    
+    .tabela tbody tr:last-of-type {
+        border-bottom: 4px solid rgb(00, 88, 166);
+        
+    
+    }
+    
+    .bloco_resultados {
+        display: none;
+    
+    }
+    
+    .btn_print{ 
+        display: none;
+        flex-direction: row;
+        position: fixed;
+        right: 0px;
+        margin-right: 40px;
+        background-color: rgb(156, 156, 156);
+        box-shadow: 0px 10px 14px -7px #000000;
+        border-radius: 5px;
+        border-color:rgb(156, 156, 156);
+        height: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        padding: 5px;
+        
+         
+    
+    }
+    
+    .fa-question-circle {
+        color: rgb(148, 148, 148);
+        
+    }
+    
+    .fa-question-circle:hover {
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        content: attr(tooltip);
+        color: white;
+        
+    }
+    
+    .fa-file-pdf {
+        color: rgb(255, 255, 255);
+        margin-left: 10px;
+        
+    }
+    
+    .footer {
+        margin: 40px;
+        margin-bottom: 0px;
+        justify-content: center;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: grey;
+    
+    }
+    
+    
+    
+    div.tooltips {
+        position: relative;
+        display: inline;
+        cursor: pointer;
+      }
+    
+    div.tooltips span {
+        position: absolute;
+        width: 300px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #000000;
+        background: #ffffff;
+        text-align: center;
+        visibility: hidden;
+        border-radius: 17px;
+        padding: 10px;
+        text-align: justify;
+        box-shadow: 0px 10px 14px -7px #000000;
+      }
+    
+    div.tooltips span:after {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 24%;
+        margin-left: -8px;
+        width: 0; height: 0;
+        border-bottom: 8px solid #ffffff;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+        box-shadow: 0px 10px 14px -7px #000000;
+        
+      }
+      
+    div:hover.tooltips span {
+        visibility: visible;
+        top: 30px;
+        left: 50%;
+        margin-left: -76px;
+        z-index: 999;
+      }
+    
+    .mtbf_formula{
+        max-height: 80px;
+        max-width: 160px;
+    }
+    
+    .confiabilidade_formula{
+        max-height: 160px;
+        max-width: 160px;
+    }
+    
+    
+    
+    
+    

@@ -12,11 +12,11 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <div class="container">    
+    <div class="container"> 
         <div class="card">
             <div>
-                <h1>Relatório de MTBF, MTTR e disponibilidade inerente</h1>
-                <div>
+                <h3>Relatório de MTBF, MTTR e disponibilidade inerente</h3>
+                <div class="form-group">
                     <label for="numero">Digite um número: </label>
                 </div>
                 <div>
@@ -24,19 +24,19 @@
                 </div>
             </div>
             <button class="btn" onclick="adicionarCampos()">Adicionar Campos</button>
-            <h1>Linha do Tempo</h1>
+            <h3>Linha do Tempo</h3>
             <form>
                 <div id="container" ></div>
             </form>
             <div class=results>
                 <div class=results_boxes>
-                    <div class=result_box id=mtbf>
+                    <div id=mtbf>
                     </div>
-                    <div class=result_box id=mttr>
+                    <div id=mttr>
                     </div>
-                    <div class=result_box id=disponibilidade>
+                    <div id=disponibilidade>
                     </div>
-                    <div class=result_box id=indisponibilidade>
+                    <div id=indisponibilidade>
                     </div>
                 </div>    
                 <canvas class=myChart id=myChart></canvas>
